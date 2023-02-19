@@ -1,0 +1,3 @@
+graphviz
+prettytable
+git+https://github.com/dabeaz/ply
