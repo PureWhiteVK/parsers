@@ -1,0 +1,31 @@
+?start : json_text
+
+?json_text : value
+?value : "false" -> false 
+       | "null"  -> null
+       | "true"  -> true 
+       | object | array | number | string
+object : "{" [member ("," member)*] "}"
+member : string ":" value
+array : "[" [value ("," value)*] "]"
+number : NUMBER
+
+NUMBER : "-"? INT FRAC? EXP?
+INT : "0" | DIGIT1_9 DIGIT*
+FRAC : "." DIGIT+
+EXP : E ("-"|"+")? DIGIT+
+E : "e" | "E"
+DIGIT : /[0-9]/
+DIGIT1_9 : /[1-9]/
+
+string : "\"" (UNESCAPED | escaped_char | escaped_utf16)* "\""
+escaped_char : /\\[\/"bfnrt]/ | /\\u(?:(?:[0-9a-cefA-CEF][0-9a-fA-F])|(?:[dD][0-7]))[0-9a-fA-F]{2}/ 
+escaped_utf16 : "\\u" SURROGATE "\\u" SURROGATE
+SURROGATE: /[Dd][89a-fA-F][0-9a-fA-F]{2}/
+HEXDIG : /[0-9a-fA-F]/
+UNESCAPED : /[\x20-\x21]|[\x23-\x5B]|[\x5D-\U0010FFFF]/
+
+WS : /[\x20\x09\x0A\x0D]+/
+
+%ignore WS
+
