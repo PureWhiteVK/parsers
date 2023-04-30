@@ -22,7 +22,6 @@ def nfa_to_dfa(nfa: NFA) -> DFA:
     """
     convert nfa to dfa using subset construction algorithm
     """
-
     @overload
     def epsilon_closure(state: State) -> StateClosure:
         ...
@@ -169,7 +168,7 @@ def simplify_dfa(dfa: DFA) -> DFA:
                     f'subdive group: {",".join(map(state_name,group))} on input: {_input}'
                 )
                 print(
-                    f'subdive result:\b {"/".join(",".join(map(state_name,s)) for s in target_group_map.values())}'
+                    f'subdive result: {"/".join(",".join(map(state_name,s)) for s in target_group_map.values())}'
                 )
                 # perform subdivide
                 for states in target_group_map.values():
@@ -248,6 +247,17 @@ def simplify_dfa(dfa: DFA) -> DFA:
         table.add_row(row)
     print(table)
     return sim_dfa
+
+
+def complement(dfa: DFA) -> DFA:
+    new_dfa = DFA(
+        states=dfa.states.copy(),
+        start_state=dfa.start_state,
+        accept_states=dfa.non_accpet_states.copy(),
+        inputs=dfa.inputs.copy(),
+        transitions=dfa.transitions.copy(),
+    )
+    return new_dfa
 
 
 def main():

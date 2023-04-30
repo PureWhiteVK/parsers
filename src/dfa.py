@@ -1,6 +1,6 @@
 from typing import Iterable, List, Any, Dict, Optional, Union, cast
 from graphviz import Digraph
-
+from functools import cached_property
 from prettytable import PrettyTable
 
 if __name__ == '__main__':
@@ -13,7 +13,6 @@ from src.utils import Oslash, check_type, check_array_type, State, Input, TransP
 
 
 class Transition:
-
     def __init__(self, current: State, target: State, input: Input) -> None:
         check_type(current, State, 'Transition.current')
         check_type(target, State, 'Transition.target')
@@ -63,7 +62,6 @@ class Transition:
 
 
 class DFA:
-
     def __init__(self, states: Iterable[State], start_state: State,
                  accept_states: Iterable[State], inputs: Iterable[Input],
                  transitions: Iterable[Transition]) -> None:
@@ -94,6 +92,10 @@ class DFA:
     @property
     def accept_states(self) -> List[State]:
         return self._accept_states
+
+    @cached_property
+    def non_accpet_states(self) -> List[State]:
+        return [s for s in self.states if s not in self.accept_states]
 
     @property
     def start_state(self) -> State:
@@ -185,7 +187,6 @@ class DFA:
 
 
 def main():
-
     def t(f: State, t: State, i: Input) -> Transition:
         return Transition(f, t, i)
 

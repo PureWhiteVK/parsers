@@ -1,0 +1,43 @@
+{
+  "type": "NFA",
+  "states": [
+    "0",
+    "1"
+  ],
+  "start_state": "0",
+  "accept_states": [
+    "0"
+  ],
+  "inputs": [
+    "a",
+    "b", 
+    // "ε",
+  ],
+  "transitions": [
+    {
+      "type": "Transition",
+      "current": "0",
+      "target": "0",
+      "inputs": [
+        // "ε"
+        "a"
+      ]
+    },
+    {
+      "type": "Transition",
+      "current": "0",
+      "target": "1",
+      "inputs": [
+        "a","b"
+      ]
+    },
+    {
+      "type": "Transition",
+      "current": "1",
+      "target": "0",
+      "inputs": [
+        "a"
+      ]
+    }
+  ]
+}

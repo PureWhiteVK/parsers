@@ -1,0 +1,107 @@
+{
+  "type": "NFA",
+  "states": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+  ],
+  "start_state": "0",
+  "accept_states": [
+    "0","1"
+  ],
+  "inputs": [
+    "a",
+    "b"
+  ],
+  "transitions": [
+    {
+      "type": "Transition",
+      "current": "0",
+      "target": "1",
+      "inputs": [
+        "a"
+      ]
+    },{
+      "type": "Transition",
+      "current": "0",
+      "target": "2",
+      "inputs": [
+        "b"
+      ]
+    },{
+      "type": "Transition",
+      "current": "1",
+      "target": "1",
+      "inputs": [
+        "a"
+      ]
+    },{
+      "type": "Transition",
+      "current": "1",
+      "target": "4",
+      "inputs": [
+        "b"
+      ]
+    },{
+      "type": "Transition",
+      "current": "2",
+      "target": "1",
+      "inputs": [
+        "a"
+      ]
+    },{
+      "type": "Transition",
+      "current": "2",
+      "target": "3",
+      "inputs": [
+        "b"
+      ]
+    },{
+      "type": "Transition",
+      "current": "3",
+      "target": "3",
+      "inputs": [
+        "a"
+      ]
+    },
+    {
+      "type": "Transition",
+      "current": "3",
+      "target": "2",
+      "inputs": [
+        "b"
+      ]
+    },{
+      "type": "Transition",
+      "current": "4",
+      "target": "0",
+      "inputs": [
+        "a"
+      ]
+    },{
+      "type": "Transition",
+      "current": "4",
+      "target": "5",
+      "inputs": [
+        "b"
+      ]
+    },{
+      "type": "Transition",
+      "current": "5",
+      "target": "5",
+      "inputs": [
+        "a"
+      ]
+    },{
+      "type": "Transition",
+      "current": "5",
+      "target": "4",
+      "inputs": [
+        "b"
+      ]
+    }
+  ]
+}
